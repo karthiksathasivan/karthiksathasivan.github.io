@@ -26,7 +26,7 @@
             camera.rotation.x = Math.PI / 2;
 
             starGeo = new THREE.Geometry();
-            for (let i = 0; i < 9000; i++) {
+            for (let i = 0; i < 6000; i++) {
                 star = new THREE.Vector3(
                     Math.random() * 600 - 300,
                     Math.random() * 600 - 300,
@@ -45,9 +45,9 @@
             });
 
             stars = new THREE.Points(starGeo, starMaterial);
-            //scene.add(stars);
+            scene.add(stars);
 
-            geometry = new THREE.SphereGeometry(1, 100, 100);
+            geometry = new THREE.SphereGeometry(0.1, 100, 100);
             material = new THREE.MeshNormalMaterial();
             cube = new THREE.Mesh(geometry, material);
             scene.add(cube);
