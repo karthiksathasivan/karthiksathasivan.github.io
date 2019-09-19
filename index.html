@@ -5,81 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>iKarthik - Welcome to mySpace</title>
+    <style>
+        #background {
+            display: block;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: -10;
+            border: none;
+            pointer-events: none;
+        }
 
+        #content {
+            padding: 1em;
+        }
+
+        #content>* {
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css">
 
 <body>
-    <script src="js/three.js"></script>
-    <script>
-        let scene, camera, renderer;
-        let geometry, material, cube, starGeo, stars;
-        init();
-        animate();
-        function init() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
-            camera.position.z = 2.35;
-            camera.position.y = -1.3;
-            camera.rotation.x = Math.PI / 2;
-
-            geometry = new THREE.SphereGeometry(2, 30, 30);
-            material = new THREE.MeshPhongMaterial({ color: 0x4c8bf5 });
-            cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
-
-            const color = 0xFFFFFF;
-            const intensity = 1;
-            const light = new THREE.DirectionalLight(color, intensity);
-            light.position.set(3, -4, 1.5);
-            scene.add(light);
-
-            starGeo = new THREE.Geometry();
-            for (let i = 0; i < 6000; i++) {
-                star = new THREE.Vector3(
-                    Math.random() * 600 - 300,
-                    Math.random() * 600 - 300,
-                    Math.random() * 600 - 300
-                );
-                star.velocity = 0;
-                star.acceleration = 0.01;
-                starGeo.vertices.push(star);
-            }
-
-            let sprite = new THREE.TextureLoader().load('img/star.png');
-            let starMaterial = new THREE.PointsMaterial({
-                color: 0xaaaaaa,
-                size: 0.7,
-                map: sprite
-            });
-            stars = new THREE.Points(starGeo, starMaterial);
-            scene.add(stars);
-        }
-
-        function animate() {
-            starGeo.vertices.forEach(element => {
-                element.velocity += element.acceleration;
-                element.y -= element.velocity;
-                if (element.y < -200) {
-                    element.y = 200;
-                    element.velocity = 0;
-                }
-            });
-            starGeo.verticesNeedUpdate = true;
-            stars.rotation.y += 0.002;
-
-            requestAnimationFrame(animate);
-            cube.rotation.x += 0.01;
-            renderer.render(scene, camera);
-        }
-
-    </script>
-    <nav>
-
-    </nav>
+    <iframe id="background" src="threejsScene.html"></iframe>
+    <div>
+        <h1 style="color: white">Hello World!</h1>
+    </div>
 </body>
 
 </html>
