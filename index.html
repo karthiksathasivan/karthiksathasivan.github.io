@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>iKarthik - Welcome to mySpace</title>
 
 </head>
@@ -17,13 +18,24 @@
         animate();
         function init() {
             scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000)
-            renderer = new THREE.WebGLRenderer({ antialias: true });
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
+            renderer = new THREE.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
-
-            camera.position.z = 1;
+            camera.position.z = 2.35;
+            camera.position.y = -1.3;
             camera.rotation.x = Math.PI / 2;
+
+            geometry = new THREE.SphereGeometry(2, 30, 30);
+            material = new THREE.MeshPhongMaterial({ color: 0x4c8bf5 });
+            cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            const color = 0xFFFFFF;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(3, -4, 1.5);
+            scene.add(light);
 
             starGeo = new THREE.Geometry();
             for (let i = 0; i < 6000; i++) {
@@ -33,7 +45,7 @@
                     Math.random() * 600 - 300
                 );
                 star.velocity = 0;
-                star.acceleration = 0.02;
+                star.acceleration = 0.01;
                 starGeo.vertices.push(star);
             }
 
@@ -43,15 +55,8 @@
                 size: 0.7,
                 map: sprite
             });
-
             stars = new THREE.Points(starGeo, starMaterial);
             scene.add(stars);
-
-            geometry = new THREE.SphereGeometry(0.1, 100, 100);
-            material = new THREE.MeshNormalMaterial();
-            cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
-
         }
 
         function animate() {
@@ -68,7 +73,6 @@
 
             requestAnimationFrame(animate);
             cube.rotation.x += 0.01;
-            cube.rotation.y += 0.02;
             renderer.render(scene, camera);
         }
 
