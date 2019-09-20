@@ -60,15 +60,9 @@
         </div>
     </div>
 
-    <script src="../resume/js/three.js"></script>
+    <script src="../js/three.min.js"></script>
     <script>
 
-        // $("#india").focusin(function () {
-        //     $("#india").css("background", "red");
-        // });
-        // $("#australia").focusout(function () {
-        //     $("#australia").css("background", "white");
-        // });
 
         const SPIN = 0.005;
         let scene, camera, renderer;
@@ -92,10 +86,10 @@
 
 
             material = new THREE.MeshPhongMaterial();
-            material.map = new THREE.TextureLoader().load('img/land_ocean_ice_cloud_2048.png');
-            material.specularMap = new THREE.TextureLoader().load('img/specularmap.png');
+            material.map = new THREE.TextureLoader().load('../img/land_ocean_ice_cloud_2048.png');
+            material.specularMap = new THREE.TextureLoader().load('../img/specularmap.png');
             material.specular = new THREE.Color('grey');
-            material.bumpMap = new THREE.TextureLoader().load('img/bumpmap.png');
+            material.bumpMap = new THREE.TextureLoader().load('../img/bumpmap.png');
             material.bumpScale = 0.15;
 
             cube = new THREE.Mesh(geometry, material);
@@ -124,7 +118,7 @@
                 starGeo.vertices.push(star);
             }
 
-            let sprite = new THREE.TextureLoader().load('img/star.png');
+            let sprite = new THREE.TextureLoader().load('../img/star.png');
             let starMaterial = new THREE.PointsMaterial({
                 color: 0xaaaaaa,
                 size: 0.7,
