@@ -5,20 +5,29 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
-    <div id="content">
-        <nav class="nav navbar-fixed">
-            <a style="text-decoration: none;" href="/resume/index.html">Resume</a>
-        </nav>
-        <div class="row">
-            <div class="logo"></div>
+    <nav class="navbar navbar-fixed">
+        <div class="nav-wrapper" style="align-content: right;">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="resume/index.html">About Me</a></li>
+            </ul>
         </div>
-        <div class="row center-align">
-            <h2>Hi</h2>
-            <h4>Welcome to My Page</h4>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="resume/index.html">About Me</a></li>
+    </ul>
+    <div id="container">
+        <div id="content">
+            <div class="neon-wrapper">
+                <div class="neon-text">
+                    HI.
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/three.js"></script>
@@ -62,7 +71,7 @@
             const color = 0xFFFFFF;
             const intensity = 1;
             const light = new THREE.DirectionalLight(color, intensity);
-            light.position.set(-5, -1, -2);
+            light.position.set(-1, -2, 1);
             scene.add(light);
 
             starGeo = new THREE.Geometry();
@@ -134,6 +143,13 @@
             cubeRotation = SPIN;
             animate();
         };
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
     </script>
 </body>
 

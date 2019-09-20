@@ -1,26 +1,33 @@
 body {    
-    width: 100vw;
-  height: 100vh;
-  margin: 0;
   background: black;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden; 
 }
+
+.nav-wrapper,.navbar-fixed{
+  background-color: transparent;
+  background: transparent;
+  border-color: transparent;
+}
+
 canvas {
     position: absolute;
     top:0;
     left:0;
     z-index:-99;
 }
+
+#container{
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
 #content {
-    max-width: 70vw;
+    max-width: 50vw;    
     padding: 35px;
-    border-radius: 15px;
-    color:black;
-    background: rgba(224, 224, 224, 0.7);
-    box-shadow: 1px 1px 20px rgba(224, 224, 224, 0.5);
+    color:black;      
   }
   .logo {
     background-image: url("https://karthiksathasivan.github.io/img/logo.png");
@@ -28,4 +35,37 @@ canvas {
     height:100px;
     border-radius: 50%;
     margin:0 auto;
+  }
+
+  @font-face{
+    font-family: neon;
+    src: url('../fonts/hellodenverdisplayregular_v1.6.ttf');
+  }
+
+  .neon-wrapper{
+    box-shadow:
+    0 0 0.1vw 0.4vw #fff7f7,
+    0 0 0.4vw 0.6vw #e770e7,
+    0 0 4vw 0.4vw #FF00FF,
+
+    inset 0 0 1.5vw 0.4vw #ff00ff,
+    inset 0 0 0.4vw 0.2vw #e770e7,
+    inset 0 0 0.5vw 0.2vw #fff7f7;
+    border-radius: 1.5rem;
+  }
+  .neon-text{
+    font-family:neon;
+    font-size: 8rem;
+    color: #ffd8d8;
+    padding : 0 3.5rem 0 3.5rem;
+    text-shadow: 
+    .1vw 0vw .25vw #ffd8d8, .2vw 0vw .25vw #ffd8d8, .4vw 0vw .25vw #ffd8d8, 
+    
+    .1vw 0vw  0vw #e770e7, .2vw 0vw  0vw #e770e7, .4vw 0vw 0vw #e770e7, 
+    .1vw 0vw .1vw #e770e7, .2vw 0vw .1vw #e770e7, .4vw 0vw .1vw #e770e7, 
+    .1vw 0vw  2vw #e770e7, .2vw 0vw  2vw #e770e7, .4vw 0vw 2vw #e770e7, 
+
+    .1vw 0vw 1vw #FF00FF, .2vw 0vw  1vw #FF00FF, .4vw 0vw 5vw #FF00FF, 
+    .1vw 0vw 5vw #FF00FF, .2vw 0vw  20vw #FF00FF, .4vw 0vw 10vw #FF00FF, 
+    .1vw 0vw 10vw #FF00FF, .2vw 0vw 30vw #FF00FF, .4vw 0vw 10vw #FF00FF;
   }
