@@ -14,8 +14,8 @@
             <div class="logo"></div>
         </div>
         <div class="row center-align">
-            <h5>Hi</h5>
-            <h6>Welcome to My Page</h6>
+            <h2>Hi</h2>
+            <h4>Welcome to My Page</h4>
         </div>
     </div>
 
@@ -61,14 +61,14 @@
             cube.rotation.z = 195 * (Math.PI / 180);
             globe.add(cube);
 
-            globe.position.y = 18;
-            globe.position.z = -2;
+            globe.position.y = 10;
+            globe.position.x = 5;
             scene.add(globe);
 
             const color = 0xFFFFFF;
             const intensity = 1;
             const light = new THREE.DirectionalLight(color, intensity);
-            light.position.set(2, -4, 2);
+            light.position.set(-5, -1, -2);
             scene.add(light);
 
             starGeo = new THREE.Geometry();
