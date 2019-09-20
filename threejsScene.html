@@ -10,10 +10,14 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <body>
+    <canvas id="c"></canvas>
+    <button id="india" onmouseover="setCoordinates(this);" onmouseout="spinIt();">India</button>
     <script src="js/three.js"></script>
     <script>
+        const SPIN = 0.005;
         let scene, camera, renderer;
         let geometry, material, cube, starGeo, stars;
+        var cubeRotation = SPIN;
         init();
         animate();
         function init() {
@@ -78,6 +82,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
+
         function animate() {
             starGeo.vertices.forEach(element => {
                 element.velocity += element.acceleration;
@@ -88,11 +93,29 @@
                 }
             });
             starGeo.verticesNeedUpdate = true;
-            stars.rotation.y += 0.002;
+            stars.rotation.y += SPIN;
 
             requestAnimationFrame(animate);
-            cube.rotation.z += 0.008;
+            if (cubeRotation === SPIN) {
+                cube.rotation.z += SPIN;
+                console.log(cube.rotation.z);
+                console.log(SPIN);
+            }
+            else {
+                cube.rotation.z = cubeRotation;
+            }
             renderer.render(scene, camera);
+        }
+
+        function spinIt() {
+            cube.rotation.z = 0;
+            cubeRotation = SPIN;
+        }
+        function setCoordinates(element) {
+            if (element.id === "india") {
+                cubeRotation = 195 * (Math.PI / 180);
+                animate();
+            }
         }
 
     </script>
