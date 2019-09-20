@@ -35,14 +35,14 @@
             geometry = new THREE.SphereGeometry(2, 50, 50);
             geometry.rotateX((Math.PI / 2));
 
-            var loader = new THREE.TextureLoader();
-            loader.load('img/land_ocean_ice_cloud_2048.png', function (texture) {
-                material = new THREE.MeshPhongMaterial({ map: texture });
-                material.specularMap = loader.load('img/specularmap.png');
-                material.specular = new THREE.Color('grey');
-                material.bumpMap = loader.load('img/bumpmap.png');
-                material.bumpScale = 0.1;
-            });
+
+            material = new THREE.MeshPhongMaterial();
+            material.map = new THREE.TextureLoader().load('img/land_ocean_ice_cloud_2048.png');
+            material.specularMap = new THREE.TextureLoader().load('img/specularmap.png');
+            material.specular = new THREE.Color('grey');
+            material.bumpMap = new THREE.TextureLoader().load('img/bumpmap.png');
+            material.bumpScale = 0.1;
+
             cube = new THREE.Mesh(geometry, material);
             cube.rotation.z = 195 * (Math.PI / 180);
             globe.add(cube);
