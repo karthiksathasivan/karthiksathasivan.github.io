@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        <div class="row">
+            <div class="logo"></div>
+        </div>
+        <div class="row center-align">
+            <h2>Hi</h2>
+            <h4>Welcome to My Page</h4>
+        </div>
+    </div>
+
+    <script src="js/three.js"></script>
+    <script>
+
+        // $("#india").focusin(function () {
+        //     $("#india").css("background", "red");
+        // });
+        // $("#australia").focusout(function () {
+        //     $("#australia").css("background", "white");
+        // });
+
+        const SPIN = 0.005;
+        let scene, camera, renderer;
+        let geometry, material, cube, starGeo, stars;
+        var cubeRotation = SPIN;
+        init();
+
+
+        function init() {
+            cubeRotation = SPIN;
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+            camera.rotation.x = Math.PI / 2;
+
+            const globe = new THREE.Group();
+            geometry = new THREE.SphereGeometry(2, 50, 50);
+            geometry.rotateX((Math.PI / 2));
+
+
+            material = new THREE.MeshPhongMaterial();
+            material.map = new THREE.TextureLoader().load('img/land_ocean_ice_cloud_2048.png');
+            material.specularMap = new THREE.TextureLoader().load('img/specularmap.png');
+            material.specular = new THREE.Color('grey');
+            material.bumpMap = new THREE.TextureLoader().load('img/bumpmap.png');
+            material.bumpScale = 0.15;
+
+            cube = new THREE.Mesh(geometry, material);
+            cube.rotation.z = 195 * (Math.PI / 180);
+            globe.add(cube);
+
+            globe.position.y = 20;
+            globe.position.z = -3;
+            scene.add(globe);
+
+            const color = 0xFFFFFF;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(-5, -1, -2);
+            scene.add(light);
+
+            starGeo = new THREE.Geometry();
+            for (let i = 0; i < 6000; i++) {
+                star = new THREE.Vector3(
+                    Math.random() * 600 - 300,
+                    Math.random() * 600 - 300,
+                    Math.random() * 600 - 300
+                );
+                star.velocity = 0;
+                star.acceleration = 0.01;
+                starGeo.vertices.push(star);
+            }
+
+            let sprite = new THREE.TextureLoader().load('img/star.png');
+            let starMaterial = new THREE.PointsMaterial({
+                color: 0xaaaaaa,
+                size: 0.7,
+                map: sprite
+            });
+            stars = new THREE.Points(starGeo, starMaterial);
+            scene.add(stars);
+
+            window.addEventListener("resize", onWindowResize, false);
+
+            animate();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+
+        function animate() {
+            starGeo.vertices.forEach(element => {
+                element.velocity += element.acceleration;
+                element.y -= element.velocity;
+                if (element.y < -200) {
+                    element.y = 200;
+                    element.velocity = 0;
+                }
+            });
+            starGeo.verticesNeedUpdate = true;
+            stars.rotation.y += SPIN;
+
+            requestAnimationFrame(animate);
+            if (cubeRotation === SPIN) {
+                cube.rotation.z += SPIN;
+            }
+            else {
+                cube.rotation.z = cubeRotation;
+            }
+            renderer.render(scene, camera);
+        }
+
+
+        function setCoordinates(element) {
+            if (element.id === "india") {
+                cubeRotation = 195 * (Math.PI / 180);
+                animate();
+            }
+        }
+
+        function spinIt() {
+            stars.rotation.y = 0;
+            cube.rotation.z = 0;
+            cubeRotation = SPIN;
+            animate();
+        };
+    </script>
+</body>
+
+</html>
