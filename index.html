@@ -11,16 +11,19 @@
 
 <body>
     <canvas id="c"></canvas>
-    <button id="india" onmouseover="setCoordinates(this);" onmouseout="spinIt();">India</button>
+    <button id="india" onmouseover="setCoordinates(this);" onmouseout="spinIt()">India</button>
     <script src="js/three.js"></script>
     <script>
+
         const SPIN = 0.005;
         let scene, camera, renderer;
         let geometry, material, cube, starGeo, stars;
         var cubeRotation = SPIN;
         init();
-        animate();
+
+
         function init() {
+            cubeRotation = SPIN;
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
             renderer = new THREE.WebGLRenderer();
@@ -35,11 +38,11 @@
             loader.load('img/land_ocean_ice_cloud_2048.png', function (texture) {
                 geometry = new THREE.SphereGeometry(2, 50, 50);
                 geometry.rotateX((Math.PI / 2));
-                material = new THREE.MeshPhongMaterial({ map: texture, overdraw: 0.5 });
-                material.specularMap = THREE.TextureLoader().load('img/specularmap.png');
+                material = new THREE.MeshPhongMaterial({ map: texture, overdraw: 1 });
+                material.specularMap = loader.load('img/specularmap.png');
                 material.specular = new THREE.Color('grey');
-                material.bumpMap = THREE.TextureLoader().load('img/bumpmap.png');
-                material.bumpScale = 0.08;
+                material.bumpMap = loader.load('img/bumpmap.png');
+                material.bumpScale = 0.1;
                 cube = new THREE.Mesh(geometry, material);
                 globe.add(cube);
             });
@@ -74,6 +77,8 @@
             scene.add(stars);
 
             window.addEventListener("resize", onWindowResize, false);
+
+            animate();
         }
 
         function onWindowResize() {
@@ -98,8 +103,6 @@
             requestAnimationFrame(animate);
             if (cubeRotation === SPIN) {
                 cube.rotation.z += SPIN;
-                console.log(cube.rotation.z);
-                console.log(SPIN);
             }
             else {
                 cube.rotation.z = cubeRotation;
@@ -107,10 +110,7 @@
             renderer.render(scene, camera);
         }
 
-        function spinIt() {
-            cube.rotation.z = 0;
-            cubeRotation = SPIN;
-        }
+
         function setCoordinates(element) {
             if (element.id === "india") {
                 cubeRotation = 195 * (Math.PI / 180);
@@ -118,6 +118,12 @@
             }
         }
 
+        function spinIt() {
+            stars.rotation.y = 0;
+            cube.rotation.z = 0;
+            cubeRotation = SPIN;
+            animate();
+        };
     </script>
 </body>
 
