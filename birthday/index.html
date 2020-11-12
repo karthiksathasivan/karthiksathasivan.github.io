@@ -54,12 +54,12 @@
         const SPIN = 0.005;
         let scene, camera, renderer;
         let geometry, material, cube, starGeo, stars;
-        var cubeRotation = SPIN;
+        // var cubeRotation = SPIN;
         init();
 
 
         function init() {
-            cubeRotation = SPIN;
+            // cubeRotation = SPIN;
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
             renderer = new THREE.WebGLRenderer();
@@ -119,26 +119,27 @@
             stars.rotation.y += SPIN;
 
             requestAnimationFrame(animate);
-            if (cubeRotation === SPIN) {
-                cube.rotation.z += SPIN;
-            } else {
-                cube.rotation.z = cubeRotation;
-            }
+            // if (cubeRotation === SPIN) {
+            //     cube.rotation.z += SPIN;
+            // }
+            // else {
+            //     cube.rotation.z = cubeRotation;
+            // }
             renderer.render(scene, camera);
         }
 
 
         function setCoordinates(element) {
             if (element.id === "india") {
-                cubeRotation = 195 * (Math.PI / 180);
+                // cubeRotation = 195 * (Math.PI / 180);
                 animate();
             }
         }
 
         function spinIt() {
             stars.rotation.y = 0;
-            cube.rotation.z = 0;
-            cubeRotation = SPIN;
+            // cube.rotation.z = 0;
+            // cubeRotation = SPIN;
             animate();
         };
     </script>
