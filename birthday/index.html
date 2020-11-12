@@ -25,35 +25,24 @@
                 <div id="ausProjects">
                     <h4>PROJECTS AND PORTFOLIOS</h4><br />
                     <h6>Gaggle.net.au (Maintenance) – Management Consultants’ website</h6>
-                    Freelancer – developing a SaaS solution using .NET MVC; maintaining existing build of the site
-                    https://gaggle.net.au to add subscriptions and service sales. Also maintaining the website’s
-                    core functions like Cashflow analysis and SEO Audit tools. Maintaining the application hosted on AWS
-                    EC2 cloud instance.<br /><br />
+                    Freelancer – developing a SaaS solution using .NET MVC; maintaining existing build of the site https://gaggle.net.au to add subscriptions and service sales. Also maintaining the website’s core functions like Cashflow analysis and SEO Audit tools. Maintaining
+                    the application hosted on AWS EC2 cloud instance.<br /><br />
 
                     <h6>Vetra.store(under construction) – eCommerce website!</h6>
-                    Currently working on an eCommerce website https://vetra.store using WooCommerce software as a
-                    hobby and support to my friend to expand his business. Have been managing the UI/UX design for the
-                    website and responsible for the architecture setup.<br /><br />
+                    Currently working on an eCommerce website https://vetra.store using WooCommerce software as a hobby and support to my friend to expand his business. Have been managing the UI/UX design for the website and responsible for the architecture setup.<br
+                    /><br />
 
                     <h6>MelEyes – Industry Experience project, Master of IT</h6>
-                    Developed a web application that was created with TDD strategy. I demonstrated a high level of<br />
-                    coordination and knowledge sharing in agile teams throughout the SDLC of the project. I was<br />
-                    responsible for analyzing the runtime requirements and setting up the server based on thorough<br />
-                    analysis, deploying the application to Azure Cloud Server. I was also responsible for maintaining
-                    the application on the server and creating Maintenance documents for future troubleshooting.
-                    Link to github repository: https://github.com/karthiksathasivan/VisionMelbourne<br />
-                    Key skills: ASP.NET MVC, C#, SQL Database, JavaScript, JQuery, Visual Studio, Azure<br /><br />
+                    Developed a web application that was created with TDD strategy. I demonstrated a high level of<br /> coordination and knowledge sharing in agile teams throughout the SDLC of the project. I was<br /> responsible for analyzing the runtime
+                    requirements and setting up the server based on thorough<br /> analysis, deploying the application to Azure Cloud Server. I was also responsible for maintaining the application on the server and creating Maintenance documents for future
+                    troubleshooting. Link to github repository: https://github.com/karthiksathasivan/VisionMelbourne<br /> Key skills: ASP.NET MVC, C#, SQL Database, JavaScript, JQuery, Visual Studio, Azure<br /><br />
 
                     <h6>Holiday Booking System – Personal project</h6>
-                    A java enterprise application built using java language in netbeans IDE. I used Java 8+ and
-                    managed beans to build the application using Spring MVC architecture.<br />
-                    Link to github repository: https://github.com/karthiksathasivan/HolidayBooking-J2EE<br />
-                    Key skills: Java, Spring MVC Framework, Netbeans, EJB, JEE<br /><br />
+                    A java enterprise application built using java language in netbeans IDE. I used Java 8+ and managed beans to build the application using Spring MVC architecture.<br /> Link to github repository: https://github.com/karthiksathasivan/HolidayBooking-J2EE<br
+                    /> Key skills: Java, Spring MVC Framework, Netbeans, EJB, JEE<br /><br />
 
                     <h6>Data Transfer using BLE</h6>
-                    Developed a mesh network using Bluetooth low energy devices that can enhance smart transportation
-                    in smart cities.<br />
-                    Key skills: Nordic semiconductors nRF51822, BLE, Mesh network, IoT<br />
+                    Developed a mesh network using Bluetooth low energy devices that can enhance smart transportation in smart cities.<br /> Key skills: Nordic semiconductors nRF51822, BLE, Mesh network, IoT<br />
                 </div>
             </div>
 
@@ -62,8 +51,6 @@
 
     <script src="../js/three.min.js"></script>
     <script>
-
-
         const SPIN = 0.005;
         let scene, camera, renderer;
         let geometry, material, cube, starGeo, stars;
@@ -79,26 +66,6 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
             camera.rotation.x = Math.PI / 2;
-
-            const globe = new THREE.Group();
-            geometry = new THREE.SphereGeometry(2, 50, 50);
-            geometry.rotateX((Math.PI / 2));
-
-
-            material = new THREE.MeshPhongMaterial();
-            material.map = new THREE.TextureLoader().load('../img/land_ocean_ice_cloud_2048.png');
-            material.specularMap = new THREE.TextureLoader().load('../img/specularmap.png');
-            material.specular = new THREE.Color('grey');
-            material.bumpMap = new THREE.TextureLoader().load('../img/bumpmap.png');
-            material.bumpScale = 0.15;
-
-            cube = new THREE.Mesh(geometry, material);
-            cube.rotation.z = 195 * (Math.PI / 180);
-            globe.add(cube);
-
-            globe.position.y = 10;
-            globe.position.x = 5;
-            scene.add(globe);
 
             const color = 0xFFFFFF;
             const intensity = 1;
@@ -154,8 +121,7 @@
             requestAnimationFrame(animate);
             if (cubeRotation === SPIN) {
                 cube.rotation.z += SPIN;
-            }
-            else {
+            } else {
                 cube.rotation.z = cubeRotation;
             }
             renderer.render(scene, camera);
