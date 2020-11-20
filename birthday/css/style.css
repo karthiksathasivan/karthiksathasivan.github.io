@@ -1,6 +1,6 @@
 body {
     background: black;
-    overflow: scroll;
+    overflow: scroll !important;
 }
 
 canvas {
@@ -29,18 +29,18 @@ canvas {
     box-shadow: 1px 1px 20px rgba(224, 224, 224, 0.5);
 }
 
-#content::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     background-color: #F5F5F5;
 }
 
-#content::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 2px;
     background-color: #F5F5F5;
 }
 
-#content::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: #4285F4;
