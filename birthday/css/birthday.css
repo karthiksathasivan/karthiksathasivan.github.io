@@ -33,11 +33,6 @@
     border: 1px solid grey;
 }
 
-* {
-    height: 50vw !important;
-    overflow-y: scroll;
-}
-
 body {
     background: black;
     margin: 0;
