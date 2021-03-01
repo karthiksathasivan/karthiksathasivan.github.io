@@ -57,14 +57,14 @@
 
             // // Mousewheel
 
-            $('#book-zoom').mousewheel(function(event, delta, deltaX, deltaY) {
+            $('#book-zoom').mousewheel(function (event, delta, deltaX, deltaY) {
 
                 var data = $(this).data(),
                     step = 30,
                     flipbook = $('.sj-book'),
                     actualPos = $('#slider').slider('value') * step;
 
-                if (typeof(data.scrollX) === 'undefined') {
+                if (typeof (data.scrollX) === 'undefined') {
                     data.scrollX = actualPos;
                     data.scrollPage = flipbook.turn('page');
                 }
@@ -83,7 +83,7 @@
                 if (data.scrollTimer)
                     clearInterval(data.scrollTimer);
 
-                data.scrollTimer = setTimeout(function() {
+                data.scrollTimer = setTimeout(function () {
                     data.scrollX = undefined;
                     data.scrollPage = undefined;
                     data.scrollTimer = undefined;
@@ -97,7 +97,7 @@
                 min: 1,
                 max: 100,
 
-                start: function(event, ui) {
+                start: function (event, ui) {
 
                     if (!window._thumbPreview) {
                         _thumbPreview = $('<div />', {
@@ -112,13 +112,13 @@
 
                 },
 
-                slide: function(event, ui) {
+                slide: function (event, ui) {
 
                     setPreview(ui.value);
 
                 },
 
-                stop: function() {
+                stop: function () {
 
                     if (window._thumbPreview)
                         _thumbPreview.removeClass('show');
@@ -132,7 +132,7 @@
             // URIs
 
             Hash.on('^page\/([0-9]*)$', {
-                yep: function(path, parts) {
+                yep: function (path, parts) {
 
                     var page = parts[1];
 
@@ -142,7 +142,7 @@
                     }
 
                 },
-                nop: function(path) {
+                nop: function (path) {
 
                     if ($('.sj-book').turn('is'))
                         $('.sj-book').turn('page', 1);
@@ -151,7 +151,7 @@
 
             // Arrows
 
-            $(document).keydown(function(e) {
+            $(document).keydown(function (e) {
 
                 var previous = 37,
                     next = 39;
@@ -184,7 +184,7 @@
                 duration: 1000,
                 pages: 112,
                 when: {
-                    turning: function(e, page, view) {
+                    turning: function (e, page, view) {
 
                         var book = $(this),
                             currentPage = book.turn('page'),
@@ -229,7 +229,7 @@
 
                     },
 
-                    turned: function(e, page, view) {
+                    turned: function (e, page, view) {
 
                         var book = $(this);
 
@@ -245,19 +245,19 @@
 
                     },
 
-                    start: function(e, pageObj) {
+                    start: function (e, pageObj) {
 
                         moveBar(true);
 
                     },
 
-                    end: function(e, pageObj) {
+                    end: function (e, pageObj) {
 
                         var book = $(this);
 
                         updateDepth(book);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
 
                             $('#slider').slider('value', getViewNumber(book));
 
@@ -267,7 +267,7 @@
 
                     },
 
-                    missing: function(e, pages) {
+                    missing: function (e, pages) {
 
                         for (var i = 0; i < pages.length; i++) {
                             addPage(pages[i], $(this));
