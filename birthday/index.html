@@ -182,7 +182,7 @@
                 autoCenter: true,
                 gradients: true,
                 duration: 1000,
-                pages: 6,
+                pages: 0,
                 when: {
                     turning: function (e, page, view) {
 
@@ -220,10 +220,10 @@
                         else
                             $('.sj-book .p2').removeClass('fixed');
 
-                        // if (page < book.turn('pages'))
-                        //     $('.sj-book .p111').addClass('fixed');
-                        // else
-                        //     $('.sj-book .p111').removeClass('fixed');
+                        if (page < book.turn('pages'))
+                            $('.sj-book .p111').addClass('fixed');
+                        else
+                            $('.sj-book .p111').removeClass('fixed');
 
                         Hash.go('page/' + page).update();
 
